@@ -1,4 +1,4 @@
-use crate::Io;
+use crate::{Io, SeekFrom};
 use thiserror::Error;
 
 const DEFAULT_BLOCK_SIZE: usize = 4096;
@@ -144,5 +144,18 @@ pub trait WriteAt: Io {
             }
         }
         Ok(())
+    }
+}
+
+pub trait Seek: Io {
+    fn seek(&mut self, pos: SeekFrom) -> Result<u64, Self::Error>;
+
+    fn rewind(&mut self) -> Result<(), Self::Error> {
+        self.seek(SeekFrom::Start(0))?;
+        Ok(())
+    }
+
+    fn stream_position(&mut self) -> Result<u64, Self::Error> {
+        self.seek(SeekFrom::Current(0))
     }
 }

@@ -1,6 +1,6 @@
 use crate::{
-    blocking::{Read, ReadAt, Write, WriteAt},
-    Io, Seek, SeekFrom,
+    blocking::{Read, ReadAt, Seek, Write, WriteAt},
+    Io, SeekFrom,
 };
 
 pub struct StatIo<T> {
