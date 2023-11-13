@@ -1,6 +1,9 @@
 pub mod blocking;
 pub mod stdio;
 
+#[cfg(feature = "stat")]
+pub mod stat;
+
 pub trait Io {
     type Error: std::error::Error + core::fmt::Debug;
 }
