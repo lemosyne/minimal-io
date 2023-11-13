@@ -2,7 +2,7 @@ pub mod blocking;
 pub mod stdio;
 
 pub trait Io {
-    type Error: std::error::Error;
+    type Error: std::error::Error + core::fmt::Debug;
 }
 
 pub enum SeekFrom {
